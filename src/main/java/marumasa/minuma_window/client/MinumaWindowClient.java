@@ -87,6 +87,7 @@ public class MinumaWindowClient implements ClientModInitializer {
         });
     }
 
+    // 見沼のレンダリング処理
     private static void renderMinuma(int textureID) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_TEXTURE_2D);
@@ -116,7 +117,7 @@ public class MinumaWindowClient implements ClientModInitializer {
         GLFW.glfwPollEvents();
     }
 
-
+    // オーバーレイのレンダリング処理
     private void renderOverlay(float red, float green, float blue) {
         glPushMatrix();
         glLoadIdentity();

@@ -10,12 +10,14 @@ public class MinumaWindow implements ModInitializer {
 
     public static final String MOD_ID = "minuma_window";
 
+    // サウンドイベント登録
     public static final SoundEvent MinumaIku_Sound = registerSound("minuma.iku");
 
     @Override
     public void onInitialize() {
     }
 
+    // サウンドイベント登録メソッド
     private static SoundEvent registerSound(String id) {
         Identifier identifier = Identifier.of(MOD_ID, id);
         return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));

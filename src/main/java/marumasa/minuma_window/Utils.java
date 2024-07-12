@@ -17,6 +17,7 @@ import java.nio.IntBuffer;
 import static org.lwjgl.system.MemoryStack.stackPush;
 
 public class Utils {
+    // ウィンドウのアイコンを設定
     public static void setWindowIcon(long window, byte[] imageBytes) {
         try (MemoryStack stack = stackPush()) {
             IntBuffer w = stack.mallocInt(1);
@@ -47,6 +48,7 @@ public class Utils {
         }
     }
 
+    // BufferedImage に変換
     public static BufferedImage toBufferedImage(byte[] bytes) {
         // バイト配列を ByteArrayInputStream に変換
         ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
@@ -58,6 +60,7 @@ public class Utils {
         }
     }
 
+    // リソースフォルダにあるファイルの内容を取得
     public static byte[] getResource(String path) {
         try (InputStream is = MinumaWindow.class.getResourceAsStream(path)) {
             if (is == null) {
@@ -69,6 +72,7 @@ public class Utils {
         }
     }
 
+    // テクスチャ読み込み
     public static int loadTexture(byte[] imageBytes) {
         int width, height;
         ByteBuffer image = ByteBuffer.allocateDirect(imageBytes.length);
