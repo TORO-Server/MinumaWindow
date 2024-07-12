@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "minuma_window",
+  "version": "${version}",
+  "name": "MinumaWindow",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/TORO-Server/MinumaWindow"
+  },
+  "license": "MIT",
+  "icon": "assets/minuma_window/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "marumasa.minuma_window.client.MinumaWindowClient"
+    ],
+    "main": [
+      "marumasa.minuma_window.MinumaWindow"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

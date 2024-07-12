@@ -1,0 +1,8 @@
+{
+  "minuma.iku": {
+    "category": "master",
+    "sounds": [
+      "minuma_window:minuma/iku"
+    ]
+  }
+}
