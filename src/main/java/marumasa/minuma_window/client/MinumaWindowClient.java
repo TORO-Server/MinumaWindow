@@ -71,14 +71,17 @@ public class MinumaWindowClient implements ClientModInitializer {
             GLFW.glfwMakeContextCurrent(MinumaWindow);
             GL.createCapabilities();
 
-            if (player.hurtTime > 0) {
+            if (player.hurtTime > 0) {// もしダメージを受けた後の無敵時間の場合
+                // オーバーレイを赤くする
                 renderOverlay(1.0f, 0.5f, 0.5f);
-                if (player.hurtTime >= player.maxHurtTime - 1) {
+                if (player.hurtTime >= player.maxHurtTime - 1) {// 現在のtickでダメージを受けていた場合
+                    // 効果音を再生
                     player.playSound(MinumaIku_Sound);
                 }
-            } else {
+            } else {// 銅でない場合は オーバーレイを初期状態にする
                 renderOverlay(1.0f, 1.0f, 1.0f);
             }
+            // 見沼をレンダリングする
             renderMinuma(MinumaTextureID);
 
             // OpenGLコンテキストの初期化
