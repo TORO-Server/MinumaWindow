@@ -2,6 +2,7 @@ package marumasa.minuma_window.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -63,7 +64,7 @@ public class MinumaWindowClient implements ClientModInitializer {
         // 毎tick 実行
         ClientTickEvents.END_CLIENT_TICK.register(context -> {
 
-            ClientPlayerEntity player = context.player;
+            ClientPlayerEntity player = MinecraftClient.getInstance().player;
             if (player == null) return;
 
             // OpenGLコンテキストの初期化
@@ -84,7 +85,7 @@ public class MinumaWindowClient implements ClientModInitializer {
             renderMinuma(MinumaTextureID);
 
             // OpenGLコンテキストの初期化
-            GLFW.glfwMakeContextCurrent(context.getWindow().getHandle());
+            GLFW.glfwMakeContextCurrent(MinecraftClient.getInstance().getWindow().getHandle());
             GL.createCapabilities();
         });
     }
@@ -116,7 +117,6 @@ public class MinumaWindowClient implements ClientModInitializer {
 
         glEnd();
         GLFW.glfwSwapBuffers(window);
-        GLFW.glfwPollEvents();
     }
 
     // オーバーレイのレンダリング処理
