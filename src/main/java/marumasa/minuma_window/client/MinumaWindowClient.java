@@ -2,7 +2,6 @@ package marumasa.minuma_window.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -16,8 +15,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class MinumaWindowClient implements ClientModInitializer {
 
-
-    private static long MinumaWindow;
+    private static long window;
 
     private final byte[] minumaImage = getResource("/assets/minuma_window/minuma.png");
     private final byte[] iconImage = getResource("/assets/minuma_window/icon.png");
@@ -43,13 +41,13 @@ public class MinumaWindowClient implements ClientModInitializer {
         // ウィンドウのサイズを変更不可にする
         GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_FALSE);
         // 見沼のウィンドウを作成
-        MinumaWindow = GLFW.glfwCreateWindow(width / 2, height / 2, "Minuma Window", 0, 0);
+        window = GLFW.glfwCreateWindow(width / 2, height / 2, "Minuma Window", 0, 0);
         // ウィンドウのアイコンを見沼にする。
-        setWindowIcon(MinumaWindow, iconImage);
+        setWindowIcon(window, iconImage);
 
 
         // OpenGLコンテキストの初期化
-        GLFW.glfwMakeContextCurrent(MinumaWindow);
+        GLFW.glfwMakeContextCurrent(window);
         GL.createCapabilities();
 
         // 垂直同期をオフにする
@@ -64,11 +62,12 @@ public class MinumaWindowClient implements ClientModInitializer {
 
         // 毎tick 実行
         ClientTickEvents.END_CLIENT_TICK.register(context -> {
-            ClientPlayerEntity player = MinecraftClient.getInstance().player;
+
+            ClientPlayerEntity player = context.player;
             if (player == null) return;
 
             // OpenGLコンテキストの初期化
-            GLFW.glfwMakeContextCurrent(MinumaWindow);
+            GLFW.glfwMakeContextCurrent(window);
             GL.createCapabilities();
 
             if (player.hurtTime > 0) {// もしダメージを受けた後の無敵時間の場合
@@ -85,7 +84,7 @@ public class MinumaWindowClient implements ClientModInitializer {
             renderMinuma(MinumaTextureID);
 
             // OpenGLコンテキストの初期化
-            GLFW.glfwMakeContextCurrent(MinecraftClient.getInstance().getWindow().getHandle());
+            GLFW.glfwMakeContextCurrent(context.getWindow().getHandle());
             GL.createCapabilities();
         });
     }
@@ -116,7 +115,7 @@ public class MinumaWindowClient implements ClientModInitializer {
 
 
         glEnd();
-        GLFW.glfwSwapBuffers(MinumaWindow);
+        GLFW.glfwSwapBuffers(window);
         GLFW.glfwPollEvents();
     }
 
