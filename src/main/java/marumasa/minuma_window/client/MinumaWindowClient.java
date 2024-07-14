@@ -120,7 +120,7 @@ public class MinumaWindowClient implements ClientModInitializer {
     }
 
     // オーバーレイのレンダリング処理
-    private void renderOverlay(float red, float green, float blue) {
+    private static void renderOverlay(float red, float green, float blue) {
         glPushMatrix();
         glLoadIdentity();
 
