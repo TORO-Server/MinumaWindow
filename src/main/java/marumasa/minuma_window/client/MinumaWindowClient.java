@@ -18,8 +18,8 @@ public class MinumaWindowClient implements ClientModInitializer {
 
     private static long window;
 
-    private final byte[] minumaImage = getResource("/assets/minuma_window/minuma.png");
-    private final byte[] iconImage = getResource("/assets/minuma_window/icon.png");
+    private static final byte[] minumaImage = getResource("/assets/minuma_window/minuma.png");
+    private static final byte[] iconImage = getResource("/assets/minuma_window/icon.png");
 
     @Override
     public void onInitializeClient() {
