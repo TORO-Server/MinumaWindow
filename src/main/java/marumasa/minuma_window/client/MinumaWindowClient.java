@@ -78,7 +78,7 @@ public class MinumaWindowClient implements ClientModInitializer {
                     // 効果音を再生
                     player.playSound(MinumaIku_Sound);
                 }
-            } else {// 銅でない場合は オーバーレイを初期状態にする
+            } else {// そうでない場合は オーバーレイを初期状態にする
                 renderOverlay(1.0f, 1.0f, 1.0f);
             }
             // 見沼をレンダリングする
